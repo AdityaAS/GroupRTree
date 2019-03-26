@@ -1,0 +1,5 @@
+Commands to run
+
+sh run.sh <inputFile> <m> <M> <Eps> <Minpts>
+
+

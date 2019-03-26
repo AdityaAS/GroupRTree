@@ -1,0 +1,44 @@
+FLAG=-c
+#FLAG=-c -g
+#CFLAG=mpicc -fopenmp
+CFLAG=mpicc-vt -vt:hyb -fopenmp
+output: Data.o Grid.o GList.o RList.o BCell.o RTree.o GridRTree.o GRTDBSCAN.o dataParallel.o MC_GRDBSCAN.o main.o
+	$(CFLAG) -o output Grid.o Data.o GList.o RList.o BCell.o RTree.o GridRTree.o GRTDBSCAN.o dataParallel.o MC_GRDBSCAN.o main.o -lm
+
+main.o: main.c
+	$(CFLAG) $(FLAG) main.c -lm
+
+GRTDBSCAN.o: GRTDBSCAN.c
+	$(CFLAG) $(FLAG) GRTDBSCAN.c -lm
+
+Grid.o: Grid.c
+	$(CFLAG) $(FLAG) Grid.c
+
+Data.o: Data.c
+	$(CFLAG) $(FLAG) Data.c -lm
+
+GridRTree.o: GridRTree.c
+	$(CFLAG) $(FLAG) GridRTree.c -lm
+
+GList.o: GList.c
+	$(CFLAG) $(FLAG) GList.c -lm
+
+RList.o: RList.c
+	$(CFLAG) $(FLAG) RList.c -lm
+
+BCell.o: BCell.c
+	$(CFLAG) $(FLAG) BCell.c -lm
+
+RTree.o: RTree.c
+	$(CFLAG) $(FLAG) RTree.c -lm
+
+dataParallel.o: dataParallel.c
+	$(CFLAG) $(FLAG) dataParallel.c -lm
+
+MC_GRDBSCAN.o: MC_GRDBSCAN.c
+	$(CFLAG) $(FLAG) MC_GRDBSCAN.c -lm
+
+clean:
+	rm *.o
+	rm output
+
